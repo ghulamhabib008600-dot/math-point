@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Math Point | Mathematics Tuition</title>
+<meta name="description" content="Math Point offers friendly mathematics tuition for school students: algebra, geometry, rate and ratio, and test preparation. Ask on WhatsApp.">
+<meta name="theme-color" content="#2748b5">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Math Point | Mathematics Tuition">
+<meta property="og:description" content="Math Point offers friendly mathematics tuition for school students: algebra, geometry, rate and ratio, and test preparation. Ask on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700&display=swap">
+<style>
+/* Layout: squared-notebook paper background, left-aligned hero with a worked equation card, topic list, 3-step method, practice widget, contact band */
+:root {
+  color-scheme: light;
+  --bg: #f6f7fb;
+  --paper: #ffffff;
+  --grid: #e3e8f3;
+  --ink: #16213e;
+  --muted: #55607a;
+  --line: #d6dcec;
+  --accent: #2748b5;
+  --accent-fg: #ffffff;
+  --pencil: #e2731f;
+  --pencil-soft: #fdeede;
+  --ok: #1d7a46;
+  --bad: #b3261e;
+  --font-display: "Sora", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1424; --paper: #182038; --grid: #1c2542; --ink: #eaeefc; --muted: #9aa5c4; --line: #2b3659;
+    --accent: #8aa4ff; --accent-fg: #0b1230; --pencil: #ff9b4d; --pencil-soft: #3a2a1a; --ok: #5fd08e; --bad: #ff8a80;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1424; --paper: #182038; --grid: #1c2542; --ink: #eaeefc; --muted: #9aa5c4; --line: #2b3659;
+  --accent: #8aa4ff; --accent-fg: #0b1230; --pencil: #ff9b4d; --pencil-soft: #3a2a1a; --ok: #5fd08e; --bad: #ff8a80;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body {
+  margin: 0; background-color: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6;
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.15; }
+a { color: inherit; }
+button, input { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--pencil); outline-offset: 2px; }
+.wrap { max-width: 980px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+section { padding-block: 36px; }
+
+header { background: var(--paper); border-bottom: 1px solid var(--line); }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-block: 12px; }
+.brand { font-family: var(--font-display); font-weight: 700; font-size: 21px; }
+.brand span { color: var(--pencil); }
+.btn { display: inline-block; border: 0; border-radius: 10px; padding: 11px 18px; background: var(--accent); color: var(--accent-fg); font-weight: 600; text-decoration: none; cursor: pointer; text-align: center; }
+.btn.small { padding: 8px 14px; font-size: 14px; }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+
+.hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center; padding-block: 44px 28px; }
+.hero h1 { font-size: clamp(30px, 6vw, 46px); }
+.hero h1 em { font-style: normal; color: var(--pencil); }
+.hero p { color: var(--muted); max-width: 46ch; margin: 14px 0 22px; }
+.hero .cta { display: flex; flex-wrap: wrap; gap: 10px; }
+.eq { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; font-family: "Cambria Math", "Segoe UI Symbol", Georgia, serif; min-width: 0; }
+.eq .cap { font-family: var(--font-body); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.eq .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 7px 0; border-bottom: 1px dashed var(--line); font-size: 21px; }
+.eq .row:last-of-type { border-bottom: 0; font-weight: 700; color: var(--accent); }
+.eq .why { font-family: var(--font-body); font-size: 13px; color: var(--muted); text-align: right; }
+@media (max-width: 760px) { .hero { grid-template-columns: 1fr; } }
+
+h2 { font-size: clamp(24px, 4.5vw, 30px); margin-bottom: 6px; }
+.lead { color: var(--muted); margin: 0 0 20px; max-width: 58ch; }
+.topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+.topic { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; min-width: 0; }
+.topic h3 { font-size: 18px; margin-bottom: 6px; }
+.topic p { margin: 0; color: var(--muted); font-size: 15px; }
+.topic .ex { margin-top: 10px; font-family: "Cambria Math", Georgia, serif; font-size: 17px; color: var(--accent); }
+
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; counter-reset: s; padding: 0; margin: 0; list-style: none; }
+.steps li { counter-increment: s; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; min-width: 0; }
+.steps li::before { content: counter(s); display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--pencil-soft); color: var(--pencil); font-weight: 700; margin-bottom: 8px; }
+.steps h3 { font-size: 17px; margin-bottom: 4px; }
+.steps p { margin: 0; color: var(--muted); font-size: 15px; }
+
+.practice { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 20px; max-width: 560px; }
+.practice .q { font-family: "Cambria Math", Georgia, serif; font-size: 28px; margin: 6px 0 14px; }
+.practice .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.practice input { width: 110px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); font-size: 18px; }
+.msg { min-height: 1.6em; margin: 12px 0 0; font-weight: 500; }
+.msg.ok { color: var(--ok); } .msg.bad { color: var(--bad); }
+
+.about { display: grid; gap: 8px; max-width: 62ch; }
+.about p { margin: 0; color: var(--muted); }
+.about b { color: var(--ink); }
+
+.contact { background: var(--accent); color: var(--accent-fg); border-radius: 16px; padding: 28px 24px; display: grid; gap: 12px; }
+.contact h2 { margin: 0; }
+.contact p { margin: 0; opacity: .9; }
+.contact .num { font-family: var(--font-display); font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.contact .btn { background: var(--accent-fg); color: var(--accent); justify-self: start; }
+footer { padding-block: 24px 40px; color: var(--muted); font-size: 14px; }
+@media (prefers-reduced-motion: no-preference) { .btn { transition: filter .15s; } .btn:hover { filter: brightness(1.1); } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <div class="brand">Math <span>Point</span></div>
+    <a class="btn small" href="https://wa.me/923087078951?text=Assalam%20o%20Alaikum%2C%20I%20want%20to%20ask%20about%20Math%20Point%20tuition." target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <h1>Maths made clear, <em>one step at a time.</em></h1>
+        <p>Friendly maths tuition for school students. Every topic is explained from the basics, practised with examples, and checked with short tests.</p>
+        <div class="cta">
+          <a class="btn" href="https://wa.me/923087078951?text=Assalam%20o%20Alaikum%2C%20I%20want%20to%20ask%20about%20Math%20Point%20tuition." target="_blank" rel="noopener">Ask on WhatsApp</a>
+          <a class="btn ghost" href="#practice">Try a question</a>
+        </div>
+      </div>
+      <div class="eq" aria-label="Worked example: solve 2x + 5 = 17">
+        <div class="cap">Worked example</div>
+        <div class="row"><span>2x + 5 = 17</span><span class="why">the question</span></div>
+        <div class="row"><span>2x = 17 &minus; 5</span><span class="why">move 5 across</span></div>
+        <div class="row"><span>2x = 12</span><span class="why">simplify</span></div>
+        <div class="row"><span>x = 6</span><span class="why">divide by 2</span></div>
+      </div>
+    </section>
+
+    <section id="topics">
+      <h2>What we cover</h2>
+      <p class="lead">Core school topics, taught in simple language with plenty of practice.</p>
+      <div class="topics">
+        <div class="topic"><h3>Algebra</h3><p>Simplifying expressions and solving equations step by step.</p><div class="ex">3x + 4 = 19</div></div>
+        <div class="topic"><h3>Geometry</h3><p>Angles, triangles, perimeter and area with clear diagrams.</p><div class="ex">A = l &times; w</div></div>
+        <div class="topic"><h3>Rate and Ratio</h3><p>Ratios, proportion, speed and sharing in a given ratio.</p><div class="ex">12 : 18 = 2 : 3</div></div>
+        <div class="topic"><h3>Test preparation</h3><p>Practice papers for school tests and entry tests.</p><div class="ex">10 MCQs + 5 short</div></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>How a lesson works</h2>
+      <p class="lead">A simple routine that builds confidence.</p>
+      <ol class="steps">
+        <li><h3>Find the gap</h3><p>We start with a quick check to see which basics need attention.</p></li>
+        <li><h3>Learn by examples</h3><p>Each idea is shown on the board, then you solve similar questions yourself.</p></li>
+        <li><h3>Check with a short test</h3><p>A short test shows progress and what to revise next.</p></li>
+      </ol>
+    </section>
+
+    <section id="practice">
+      <h2>Try a question</h2>
+      <p class="lead">Solve for x. A new question appears each time.</p>
+      <div class="practice">
+        <div class="q" id="q" aria-live="polite"></div>
+        <div class="row">
+          <label for="ans" class="lead" style="margin:0">x =</label>
+          <input id="ans" type="number" inputmode="numeric" autocomplete="off">
+          <button class="btn" id="check" type="button">Check</button>
+          <button class="btn ghost" id="next" type="button">New question</button>
+        </div>
+        <p class="msg" id="msg" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section>
+      <h2>About the teacher</h2>
+      <div class="about">
+        <p><b>Ghulam Habib</b> is a mathematics teacher with a B.Sc. in Mathematics and Physics. He teaches with patience and believes every student can do maths with steady practice.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="contact">
+        <h2>Ask about classes</h2>
+        <p>Message on WhatsApp for timings, class levels and fees.</p>
+        <div class="num">0308 7078951</div>
+        <a class="btn" href="https://wa.me/923087078951?text=Assalam%20o%20Alaikum%2C%20I%20want%20to%20ask%20about%20Math%20Point%20tuition." target="_blank" rel="noopener">Open WhatsApp</a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer><div class="wrap">Math Point &middot; Mathematics tuition</div></footer>
+
+<script>
+let sol = 0;
+const el = (id) => document.getElementById(id);
+function newQ() {
+  const a = 2 + Math.floor(Math.random() * 8);       // 2..9
+  const x = 1 + Math.floor(Math.random() * 12);      // 1..12
+  const b = 1 + Math.floor(Math.random() * 15);      // 1..15
+  sol = x;
+  el("q").textContent = a + "x + " + b + " = " + (a * x + b);
+  el("ans").value = ""; el("msg").textContent = ""; el("msg").className = "msg";
+}
+function check() {
+  const v = el("ans").value.trim();
+  const m = el("msg");
+  if (v === "") { m.textContent = "Type your answer first."; m.className = "msg bad"; return; }
+  if (Number(v) === sol) { m.textContent = "Correct. Well done!"; m.className = "msg ok"; }
+  else { m.textContent = "Not yet. Move the number across first, then divide."; m.className = "msg bad"; }
+}
+el("check").addEventListener("click", check);
+el("next").addEventListener("click", newQ);
+el("ans").addEventListener("keydown", (e) => { if (e.key === "Enter") check(); });
+newQ();
+</script>
+</body>
+</html>
